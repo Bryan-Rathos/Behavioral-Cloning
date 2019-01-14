@@ -22,7 +22,6 @@ The goals / steps of this project are the following:
 References for this project: (Thanks to all!)
 * Vivek Yadav's blog post on medium named "An augmentation based deep neural network approach to learn human driving behavior". This helped me greatly understanding how to tackle this problem of the project. It gave an insight about how to augment and process the images and its effect on creating a robust model.
 * NVIDIA end to end deep learning paper
-* I also referred Vivek Yadav's GitHub repo for help with little bit of coding on generators since it was the first time i ever heard about generators.
 * Finally referred to many links by students on the slack channel and on the facebook group
 
 ####1. Submission includes all required files and can be used to run the simulator in autonomous mode
@@ -32,7 +31,7 @@ My project includes the following files:
 * drive.py for driving the car in autonomous mode
 * model.h5 containing the weights of the model
 * model.json containing the model
-* writeup_report.md or writeup_report.pdf summarizing the results
+* README.md
 
 NOTE: I had issues with using model.h5 because of some problems with the drive.py code. The car wasn't moving at all in autonomous mode. There was some issue in the drive.py script. Aaron Brown added a PI controller too to fix the issue but still my car wasn't moving after using the updated script of drive.py. I used an older version of drive.py script used by members froms earlier cohort. So please use model.json for testing with drive.py and model.h5 in the same directory as model.json.  
 
