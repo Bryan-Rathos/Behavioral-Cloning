@@ -1,4 +1,4 @@
-#**Behavrioal Cloning Project**
+# **Behavrioal Cloning Project**
 
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
@@ -11,20 +11,20 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./pictures/normal.jpg "Normal Image"
-[image2]: ./pictures/flipped.png "Flipped Image"
-[image3]: ./pictures/change_bright.jpg "Brightness changed"
-[image4]: ./pictures/resize128x128.jpg "Resized 128x128"
-[image5]: ./pictures/cropped&resized.jpg "crop and resize"
+[image2]: ./pictures/flipped.jpg "Flipped Image"
+[image3]: ./pictures/change_bright.jpeg "Brightness changed"
+[image4]: ./pictures/resize128x128.jpeg "Resized 128x128"
+[image5]: ./pictures/cropped&resized.jpeg "crop and resize"
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
 References for this project: (Thanks to all!)
 * Vivek Yadav's blog post on medium named "An augmentation based deep neural network approach to learn human driving behavior". This helped me greatly understanding how to tackle this problem of the project. It gave an insight about how to augment and process the images and its effect on creating a robust model.
 * NVIDIA end to end deep learning paper
 * Finally referred to many links by students on the slack channel and on the facebook group
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -35,41 +35,41 @@ My project includes the following files:
 
 NOTE: I had issues with using model.h5 because of some problems with the drive.py code. The car wasn't moving at all in autonomous mode. There was some issue in the drive.py script. Aaron Brown added a PI controller too to fix the issue but still my car wasn't moving after using the updated script of drive.py. I used an older version of drive.py script used by members froms earlier cohort. So please use model.json for testing with drive.py and model.h5 in the same directory as model.json.  
 
-####2. Submssion includes functional code
+#### 2. Submssion includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.json
 ```
 
-####3. Submssion code is usable and readable
+#### 3. Submssion code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+## #Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 I have used the Nvidia end to end learning model with some modifications. The model contains 5 convolutional layers with 5 fully connected layers. Modifications were employed empiricallly through experimentation. 5x5 and 3x3 filters were used in the convolution layers and the depths of sizes 24,26,48,64 were used. (code line 135 onwards)
 
 The model includes RELU layers to introduce nonlinearity (code line 135), and the data is normalized in the model using a Keras lambda layer (code line 134). 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The model has dropout layers after every hidden layer with a dropout probablity of 0.1 to 0.5. I introduced a minimal dropout in most of the layers to reduce overfitting. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 159).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. The Udacity dataset was used for training.
 
 For details about how I created the training data, see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to first use LeNet architecture to check how it performs. I then switched to using the NVIDIA model as suggested by many on the forums, and yes, it gave ery good results. I tweaked the model a bit with Maxpoling and adding dropouts as described above and it performed better. It did not happen in one go, it took a lot of experimentation. I also chose to resize the images to from 160x320 to 128x128 to reduce dataset size and training parameters while also not distorting the image very much due to resizing.
 
@@ -81,13 +81,13 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around track-1 without leaving the road.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture consisted of a convolution neural network with the following layers and layer sizes ...
 
 Here is a visualization of the architecture.
 
-
+```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
 lambda_1 (Lambda)                (None, 128, 128, 3)   0           lambda_input_1[0][0]             
@@ -139,11 +139,11 @@ dense_5 (Dense)                  (None, 1)             11          dense_4[0][0]
 Total params: 699,519
 Trainable params: 699,519
 Non-trainable params: 0
+```
 
 
 
-
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 I used the Udacity dataset for training which includes about 8000 images from the left, center and right cameras each. So approximately 24000 images. The right and left camera serve as recovery data images.
 
